@@ -25,14 +25,10 @@ const stratCounter = () => {
     },
   };
 
-  const cleanInput: string[][] = input.split("\n").map((x) => x.split(" "));
-
-  let total = 0;
-
-  cleanInput.forEach((x) => {
-    total += shapeScore[x[1]];
-    total += resultScore[x[0]][x[1]];
-  });
-
-  return total;
+  return input
+    .split("\n")
+    .map((x) => x.split(" "))
+    .reduce((acc, x) => {
+      return acc + shapeScore[x[1]] + resultScore[x[0]][x[1]];
+    }, 0);
 };
